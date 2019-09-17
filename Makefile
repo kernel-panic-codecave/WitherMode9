@@ -37,7 +37,11 @@ export LDFLAGS := -Tlink.ld -nostartfiles -Wl,--gc-sections,-z,max-page-size=512
 ELF := arm9/arm9.elf arm11/arm11.elf
 
 .PHONY: all firm vram0 elf release clean
-all: firm
+all: firm subsystem
+
+subsystem:
+	$(MAKE) -C Shortcut
+
 
 clean:
 	@set -e; for elf in $(ELF); do \
