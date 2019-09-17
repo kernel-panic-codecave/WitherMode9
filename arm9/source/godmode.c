@@ -144,7 +144,7 @@ u32 SplashInit(const char* modestr) {
         namestr, strnlen(namestr, 64), strnlen(namestr, 64),
         "------------------------------", "https://github.com/WitherTech/WitherMode9",
         "Releases:", "https://github.com/WitherTech/WitherMode9/releases/", // this won't fit with a 8px width font
-        "Hourlies:", "https://d0k3.secretalgorithm.com/");
+        "Original Source:", "https://github.com/d0k3/GodMode9");
     DrawStringF(BOT_SCREEN, pos_xu, pos_yu, COLOR_STD_FONT, COLOR_STD_BG, loadstr);
     DrawStringF(BOT_SCREEN, pos_xb, pos_yu, COLOR_STD_FONT, COLOR_STD_BG, "built: " DBUILTL);
 
