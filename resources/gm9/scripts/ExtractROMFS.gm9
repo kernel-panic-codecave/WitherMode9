@@ -1,0 +1,29 @@
+filesel "Please Select Rom" C:/*.3ds ROM
+input "Choose output folder name" OUTDIR
+
+labelsel -o -s "Choose an Option." fs_*
+goto end
+
+@fs_romfs
+imgmount $[ROM]
+cp G:/content0.game/romfs $[GM9OUT]/$[OUTDIR]/romfs
+imgumount $[ROM]
+echo "Done!"
+goto end
+
+@fs_exefs
+imgmount $[ROM]
+cp G:/content0.game/exefs $[GM9OUT]/$[OUTDIR]/exefs
+imgumount $[ROM]
+echo "Done!"
+goto end
+
+@fs_romfs_and_exefs
+imgmount $[ROM]
+cp G:/content0.game/romfs $[GM9OUT]/$[OUTDIR]/romfs
+cp G:/content0.game/exefs $[GM9OUT]/$[OUTDIR]/exefs
+imgumount $[ROM]
+echo "Done!"
+goto end
+
+@end

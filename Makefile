@@ -39,17 +39,13 @@ ELF := arm9/arm9.elf arm11/arm11.elf
 .PHONY: all firm vram0 elf release clean
 all: firm subsystem
 
-subsystem:
-	$(MAKE) -C Shortcut
-
-
 clean:
 	@set -e; for elf in $(ELF); do \
 	    $(MAKE) --no-print-directory -C $$(dirname $$elf) clean; \
 	done
 	@rm -rf $(OUTDIR) $(RELDIR) $(FIRM) $(FIRMD) $(VRAM_OUT)
 
-release: clean
+release: clean subsystem
 	@$(MAKE) --no-print-directory firm
 	@$(MAKE) --no-print-directory firm NTRBOOT=1
 
@@ -92,5 +88,9 @@ firm: $(ELF) vram0
 	@$(PY3) -m firmtool build $(FIRM) $(FTFLAGS) -g -A 0x18000000 -D $(ELF) $(VRAM_OUT) -C NDMA XDMA memcpy
 	@echo "[FIRM] $(FIRMD)"
 	@$(PY3) -m firmtool build $(FIRMD) $(FTDFLAGS) -g -A 0x18000000 -D $(ELF) $(VRAM_OUT)  -C NDMA XDMA memcpy
+
+subsystem:
+	@mkdir output
+	$(MAKE) -C Shortcut
 
 .FORCE:
